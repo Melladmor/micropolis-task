@@ -1,0 +1,19 @@
+@if (active()) {
+<div class="pin-overlay">
+  <div class="pin-container">
+    <div class="pin">
+      <img src="/icons/pinspot.svg" alt="pin" />
+    </div>
+  </div>
+  <div class="pin-message">
+    @if (!frozen()) {
+    <p>Drag the map to position the pin.</p>
+    <button (click)="confirm()">Set Location</button>
+    } @else {
+    <p>Edit pin placement.</p>
+    <button (click)="edit()">Edit</button>
+    }
+    <div class="pointer"></div>
+  </div>
+</div>
+}

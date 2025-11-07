@@ -1,0 +1,142 @@
+<form class="spot-form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="section">
+    <h3>Spot Information</h3>
+    <div class="spot-information-section">
+      <app-forminput
+        [label]="'Spot Name'"
+        [placeholder]="'Enter spot name'"
+        formControlName="name"
+        [required]="true"
+        [icon]="'/icons/cameragray.svg'"
+        [error]="
+    form.get('name')?.touched && form.get('name')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+      />
+
+      <app-forminput
+        [label]="'Location'"
+        [placeholder]="'Dubai, Al Manikhool'"
+        formControlName="location"
+        [required]="true"
+        [icon]="'/icons/locationgray.svg'"
+        [error]="
+    form.get('location')?.touched && form.get('location')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+      />
+
+      <app-forminput
+        [label]="'Spot IP Address'"
+        [placeholder]="'192.168.10.10'"
+        formControlName="ip"
+        [required]="true"
+        [icon]="'/icons/wifi.svg'"
+        [error]="
+    form.get('ip')?.touched && form.get('ip')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+      />
+
+      <app-forminput
+        [label]="'User Name'"
+        [placeholder]="'Adnan'"
+        formControlName="username"
+        [required]="true"
+        [icon]="'/icons/user.svg'"
+        [error]="
+    form.get('username')?.touched && form.get('username')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+      />
+
+      <app-forminput
+        [label]="'Password'"
+        [type]="'password'"
+        [placeholder]="'••••••••'"
+        formControlName="password"
+        [required]="true"
+        [icon]="'/icons/password.svg'"
+        [error]="
+    form.get('password')?.touched && form.get('password')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+      />
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Spot Attributes</h3>
+
+    <app-form-multi-select
+      [label]="cameraType()?.[0]?.groupLabel || 'Camera Type'"
+      [icon]="'/icons/type.svg'"
+      placeholder="Select Camera Type"
+      [groups]="cameraType() || []"
+      formControlName="cameraType"
+      [required]="true"
+      [error]="
+    form.get('cameraType')?.touched && form.get('cameraType')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+    />
+
+    <app-form-multi-select
+      [label]="landMark()?.[0]?.groupLabel || 'Land Marks'"
+      placeholder="Select Landmark"
+      [icon]="'/icons/flag.svg'"
+      [groups]="landMark() || []"
+      formControlName="landmarks"
+      [required]="true"
+      [error]="
+    form.get('landmarks')?.touched && form.get('landmarks')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+    />
+
+    <app-form-multi-select
+      [label]="tags()?.[0]?.groupLabel || 'Critical Infrastructure'"
+      placeholder="Select critical site"
+      [groups]="tags() || []"
+      [icon]="'/icons/critical.svg'"
+      formControlName="critical"
+      [required]="true"
+      [error]="
+    form.get('critical')?.touched && form.get('critical')?.errors?.['required']
+      ? 'This field is required'
+      : null
+  "
+    />
+  </div>
+
+  <div class="section">
+    <h3>Business Configuration</h3>
+
+    <div class="toggles">
+      @for (item of businessConfigurationItems(); track item.id) {
+      <app-form-checkbox
+        [label]="item.label"
+        [checkedInput]="item.value === 'true'"
+        (toggleChange)="onToggleChange(item, $event)"
+      ></app-form-checkbox>
+      }
+    </div>
+  </div>
+
+  <button type="submit" class="submit-btn">
+    @if(this.api.loading()){
+    <span>Loading....</span>
+
+    }@else {
+    <span>+ Add Spot</span>
+
+    }
+  </button>
+</form>

@@ -1,0 +1,38 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1>Welcome Back 👋</h1>
+    <p>Please sign in to continue</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Enter your email" />
+
+        @if (email?.touched && email?.invalid) {
+        <p class="form-error">Please enter a valid email address</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Enter your password" />
+
+        @if (password?.touched && password?.invalid) {
+        <p class="form-error">Password is required</p>
+        }
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        @if (!loading) {
+        <span>Sign In</span>
+        } @else {
+        <span class="spinner"></span>
+        }
+      </button>
+
+      @if (error()) {
+      <p class="error">Invalid credentials</p>
+      }
+    </form>
+  </div>
+</div>

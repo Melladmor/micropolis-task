@@ -1,0 +1,35 @@
+<label class="form-input-wrapper">
+  @if (label()) {
+  <div class="form-input-label">
+    <p>{{ label() }}</p>
+    @if (required()) {
+    <p>Required</p>
+    }
+  </div>
+  }
+
+  <div class="input-wrapper">
+    <div class="input-icon">
+      <img src="{{ icon() }}" alt="input icon" />
+    </div>
+
+    <input
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="isDisabled()"
+      [value]="value()"
+      (input)="onInputChange($event)"
+      (blur)="onBlur()"
+      class="form-input-field"
+      [class.has-error]="error()"
+      [class.is-touched]="isTouched()"
+    />
+  </div>
+
+  @if (error()) {
+  <span class="error-message">
+    {{ error() }}
+  </span>
+  }
+</label>

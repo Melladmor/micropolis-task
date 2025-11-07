@@ -1,0 +1,156 @@
+@use 'variables' as *;
+.pin-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  width: 100%;
+}
+
+.pin-container {
+  width: 100%;
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid $bg-white;
+  padding: 1px;
+  .pin {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $bg-pink;
+    img {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+.pin-message {
+  position: absolute;
+  top: 40%;
+  background: $primary-bg;
+  height: 45px;
+  padding: 10px 7px 10px 30px;
+
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: auto;
+
+  button {
+    background: $primary-bg;
+    background: rgba($bg-white, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    height: 32px;
+    padding: 2.5px 22px 2.5px 22px;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .pointer {
+    position: absolute;
+    z-index: 4000;
+    bottom: -19px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 0px;
+    border-width: 10px;
+    border-color: $primary-bg transparent transparent transparent;
+    border-style: solid;
+  }
+}
+
+@media (max-width: 768px) {
+  .pin-overlay {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pin-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-width: 2px;
+    padding: 0;
+
+    .pin {
+      width: 36px;
+      height: 36px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .pin-message {
+    top: 33%;
+    height: 40px;
+    padding: 8px 6px 8px 26px;
+    gap: 10px;
+
+    button {
+      height: 28px;
+      padding: 2px 18px;
+      font-size: 14px;
+    }
+
+    .pointer {
+      bottom: -16px;
+      border-width: 8px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .pin-container {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border-width: 2px;
+    padding: 0;
+
+    .pin {
+      width: 30px;
+      height: 30px;
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .pin-message {
+    top: 40%;
+    height: 38px;
+    padding: 6px 6px 6px 24px;
+    gap: 8px;
+    font-size: 13px;
+
+    button {
+      height: 26px;
+      padding: 2px 14px;
+      font-size: 13px;
+    }
+
+    .pointer {
+      bottom: -12px;
+      border-width: 7px;
+    }
+  }
+}

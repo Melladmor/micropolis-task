@@ -1,0 +1,22 @@
+<div
+  class="floating-panel"
+  [@animate]="{
+    value: isOpen() ? 'enter' : 'leave',
+    params: { duration: 300 }
+  }"
+  [ngClass]="side()"
+  [style.width]="width()"
+  [style.transform]="
+    isOpen() ? 'translateX(0)' : side() === 'left' ? 'translateX(-100%)' : 'translateX(100%)'
+  "
+  [style.opacity]="isOpen() ? 1 : 0"
+  [style.pointer-events]="isOpen() ? 'auto' : 'none'"
+>
+  <div class="panel-header">
+    <span class="title"><ng-content select="[panel-title]"></ng-content></span>
+  </div>
+
+  <div class="panel-body">
+    <ng-content select="[panel-body]"></ng-content>
+  </div>
+</div>

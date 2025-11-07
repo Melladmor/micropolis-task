@@ -1,0 +1,68 @@
+<div class="form-input-wrapper">
+  @if (label()) {
+  <div class="form-input-label">
+    <p>{{ label() }}</p>
+    @if (required()) {
+    <p class="required-text">Required</p>
+    }
+  </div>
+  }
+
+  <div class="input-wrapper" (click)="toggleDropdown()">
+    @if (icon()) {
+    <div class="input-icon">
+      <img [src]="icon()" alt="input icon" />
+    </div>
+    }
+
+    <div class="selected-values-container">
+      @if (selectedValues().length === 0) {
+      <span class="placeholder-text">{{ placeholder() }}</span>
+      } @else {
+      <div class="selected-chips">
+        @for (value of selectedValues(); track value) {
+        <div class="chip">
+          <span>{{ getOptionLabel(value) }}</span>
+          <button type="button" class="chip-remove" (click)="removeValue(value, $event)">×</button>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="dropdown-arrow" [class.open]="isOpen()">
+      <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path
+          d="M1 1.5L6 6.5L11 1.5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+
+  @if (isOpen()) {
+  <div class="dropdown-menu">
+    <!-- ✅ فقط عرض كل الخيارات من كل المجموعات -->
+    @for (group of groups(); track group.groupLabel) { @for (option of group.options; track
+    option.value) {
+    <label class="option-item">
+      <input
+        type="checkbox"
+        [checked]="isSelected(option.value)"
+        (change)="toggleOption(option.value)"
+      />
+      <span class="option-label">{{ option.label }}</span>
+    </label>
+    } }
+  </div>
+  } @if (error()) {
+  <span class="error-message">{{ error() }}</span>
+  }
+</div>
+
+@if (isOpen()) {
+<div class="dropdown-backdrop" (click)="closeDropdown()"></div>
+}

@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+.spot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .section {
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: $text-primary;
+    }
+    .spot-information-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  .submit-btn {
+    margin-top: 12px;
+    padding: 12px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #0063d1;
+    }
+  }
+}

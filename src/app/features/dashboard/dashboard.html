@@ -1,0 +1,157 @@
+<div class="map-container">
+  @if (ready()) {
+  <google-map
+    height="100%"
+    width="100%"
+    [center]="center()"
+    [zoom]="zoom()"
+    (mapInitialized)="onMapReady($event)"
+  >
+    @if(!addSpotMode()){
+    <div>
+      <app-search-box
+        [map]="map()"
+        (placeSelected)="onPlaceSelected($event)"
+        (cancelled)="onSearchCancelled()"
+      >
+      </app-search-box>
+      <div>
+        <app-floating-button
+          label="Spots"
+          color="#000"
+          [right]="spotsPanel.isOpen() ? spotsPanel.getPanelWidth() : -30"
+          [top]="60"
+          [additionalStyle]="floatingButtonStyle()"
+          (clicked)="togglePanel()"
+        >
+          <img
+            src="/icons/arrow.svg"
+            alt="arrow icon for floating button"
+            width="5px"
+            height="12px"
+            [class]="
+              spotsPanel.isOpen() ? 'floating-button-arrow-state2' : 'floating-button-arrow-state1'
+            "
+          />
+        </app-floating-button>
+        <app-floating-panel #spotsPanel side="right" width="537px">
+          <div panel-title>Spots</div>
+          <div panel-body>
+            @for (area of areas(); track area.area.id) {
+
+            <app-tree-item
+              [node]="area"
+              (spotSelected)="onSpotSelected($event)"
+              (newSpotRequested)="onNewSpotRequested($event)"
+            >
+            </app-tree-item>
+            }
+          </div>
+        </app-floating-panel>
+      </div>
+      <div>
+        <app-floating-button
+          label="Pinned Cameras"
+          color="#000"
+          [left]="pinnedPanel.isOpen() ? pinnedPanel.getPanelWidth() / 1.09 : -70"
+          [top]="60"
+          [additionalStyle]="floatingCameraButtonStyle()"
+          (clicked)="togglePinnedPanel()"
+        >
+          <img
+            src="/icons/arrow.svg"
+            alt="arrow icon for floating button"
+            width="5px"
+            height="12px"
+            [class]="
+              pinnedPanel.isOpen() ? 'floating-button-arrow-state2' : 'floating-button-arrow-state1'
+            "
+          />
+        </app-floating-button>
+
+        <app-floating-panel #pinnedPanel side="left" width="537px">
+          @if(pinnedSpots().length !== 0) {
+          <div panel-title>
+            <button class="unpinAll-cameras-btn" (click)="clearAllPindSpots()">Unpin All</button>
+          </div>
+
+          }@else{
+          <p panel-title>Pinned Cameras</p>
+          }
+
+          <div panel-body>
+            @if(pinnedSpots().length === 0) {
+            <div>No pinned cameras.</div>
+            } @else {
+            <div class="pinned-list">
+              @for (spot of pinnedSpots(); track spot.id) {
+              <app-pinned-cameras [pinnedCameras]="spot" />
+              }
+            </div>
+            }
+          </div>
+        </app-floating-panel>
+      </div>
+
+      @for (spot of allSpots(); track spot.id) {
+      <app-spot-marker [map]="map()!" [spot]="spot" [iconUrl]="'/icons/camera.svg'">
+      </app-spot-marker>
+      }
+    </div>
+    } @else {
+    <app-add-spot-pin
+      [map]="map()"
+      (locationConfirmed)="onSpotConfirmed($event)"
+      (cancelled)="onAddSpotCancelled()"
+      (editingStarted)="onEditStarted()"
+    />
+
+    <div>
+      <app-floating-panel #addSpotPanel side="right" width="537px">
+        <div panel-title>
+          <div class="title-wrapper">
+            <button class="cancel-add-spot-btn" (click)="closeAddSpotPanel()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <p>Add New Spot</p>
+          </div>
+          <div class="location-breadcrumb">
+            @for (loc of extractedLocationName(); track loc.id; let last = $last) {
+            <div class="location-breadcrumb-child">
+              <p>{{ loc.name }}</p>
+              @if (!last) {
+              <p class="separator">▶</p>
+              }
+            </div>
+            }
+          </div>
+        </div>
+        <div panel-body>
+          <app-spot-form
+            [location]="spotAddLoaction()"
+            (spotCreated)="onSpotCreated()"
+            [areaId]="selectedAreaId()"
+          />
+        </div>
+      </app-floating-panel>
+    </div>
+
+    }
+  </google-map>
+  } @else {
+  <div>Loading map…</div>
+  }
+</div>

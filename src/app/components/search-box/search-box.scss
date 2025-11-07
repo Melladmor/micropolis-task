@@ -1,0 +1,137 @@
+@use 'variables' as *;
+.search-box-container {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
+  .search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    width: 396px;
+    height: 36px;
+    padding-inline: 24px;
+    padding-block: 10px;
+    border-radius: 10px;
+    background: rgba($bg-white, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: $text-primary;
+    .search-icon {
+      width: 16px;
+      height: 16px;
+    }
+    .cancel-icon {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+    .search-input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: $text-primary;
+      outline: none;
+      box-shadow: none;
+      caret-color: $text-primary;
+      &::placeholder {
+        color: $text-primary;
+      }
+    }
+  }
+  .search-results {
+    position: absolute;
+    padding: 10px;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 396px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: rgba($bg-white, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    border-radius: 10px;
+    padding: 6px 0;
+    z-index: 99999 !important;
+
+    li {
+      padding: 8px 16px;
+      color: $text-primary;
+      cursor: pointer;
+      list-style: none;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search-box-container {
+    top: 12px;
+
+    .search-box {
+      width: 320px;
+      height: 34px;
+      gap: 14px;
+      padding-inline: 18px;
+      padding-block: 8px;
+      border-radius: 9px;
+
+      .search-icon {
+        width: 14px;
+        height: 14px;
+      }
+      .cancel-icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .search-results {
+      top: 46px;
+      width: 320px;
+      max-height: 220px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .search-box-container {
+    top: 10px;
+
+    .search-box {
+      width: 260px;
+      height: 32px;
+      gap: 10px;
+      padding-inline: 14px;
+      padding-block: 6px;
+      border-radius: 8px;
+
+      .search-icon {
+        width: 12px;
+        height: 12px;
+      }
+      .cancel-icon {
+        width: 10px;
+        height: 10px;
+      }
+
+      .search-input {
+        font-size: 14px;
+      }
+    }
+
+    .search-results {
+      top: 44px;
+      width: 260px;
+      max-height: 200px;
+    }
+  }
+}

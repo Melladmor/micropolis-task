@@ -1,0 +1,31 @@
+<div class="video-overlay">
+  <div class="overlay-card">
+    <div class="overlay-header">
+      <div class="button-group">
+        <button class="close-btn" (click)="onClose()">
+          <img src="/icons/cancel.svg" alt="close icon" />
+        </button>
+        <button class="close-btn">
+          <img src="/icons/fullscreen.svg" alt="fullscreen" />
+        </button>
+        <button class="close-btn pin-btn">
+          <img src="/icons/pin.svg" alt="pin" />
+        </button>
+      </div>
+
+      <div class="live">
+        <span class="indecator"></span>
+        <span>Live</span>
+      </div>
+    </div>
+
+    <video #videoPlayer autoplay muted loop playsinline>
+      <source src="/videos/video.mp4" type="video/mp4" />
+    </video>
+
+    @if (spotData?.name) {
+    <div class="overlay-footer">{{ spotData?.name }}</div>
+    }
+  </div>
+  <div class="pointer"></div>
+</div>

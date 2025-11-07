@@ -1,0 +1,16 @@
+<div class="context-menu" [class.visible]="visible()">
+  <ul>
+    @for (a of list(); track $index) { @if (!a.divider) {
+    <li [class.disabled]="a.disabled" (click)="select(a)">
+      <p class="label">{{ a.label }}</p>
+      @if (a.icon) {
+      <span class="icon">
+        <img [src]="a.icon" alt="" width="16" height="16" />
+      </span>
+      }
+    </li>
+    } @else {
+    <div class="divider"></div>
+    } }
+  </ul>
+</div>

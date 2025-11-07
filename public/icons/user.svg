@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.118" height="18.118" viewBox="0 0 18.118 18.118">
+  <g id="wifi" opacity="0.4">
+    <path id="Path_26473" data-name="Path 26473" d="M0,0H18.118V18.118H0Z" fill="none"/>
+    <g id="user" transform="translate(-1.493 -2)">
+      <path id="Path_28076" data-name="Path 28076" d="M11.088,3a3.467,3.467,0,1,0,3.5,3.467A3.481,3.481,0,0,0,11.088,3Z" transform="translate(-0.537 0)" fill="#fff"/>
+      <path id="Path_28077" data-name="Path 28077" d="M12.614,13.645a13.192,13.192,0,0,0-4.125,0l-.146.023A3.945,3.945,0,0,0,5,17.554a1.9,1.9,0,0,0,1.905,1.89H14.2a1.9,1.9,0,0,0,1.905-1.89,3.945,3.945,0,0,0-3.342-3.886Z" transform="translate(0 -2.17)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

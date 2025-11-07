@@ -1,0 +1,140 @@
+@use 'variables' as *;
+
+.floating-panel {
+  position: absolute;
+  top: 75px;
+  bottom: 24px;
+  z-index: 1100;
+  max-height: 1101px;
+  width: var(--panel-width, 537px);
+  background: $primary-bg;
+  box-shadow: 5px 10px 40px #00000096;
+  opacity: 1;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 26px 30px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  &.left {
+    left: max(16px, min(28px, 3vw));
+  }
+
+  &.right {
+    right: max(16px, min(28px, 3vw));
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 22px;
+
+    .close-btn {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        color: #f66;
+      }
+    }
+  }
+
+  .panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+}
+
+/* Large screens to medium screens */
+@media (max-width: 1200px) {
+  .floating-panel {
+    --panel-width: min(500px, calc(100vw - 60px));
+    top: 65px;
+    padding: 22px 26px;
+  }
+}
+
+/* Medium screens to tablets */
+@media (max-width: 768px) {
+  .floating-panel {
+    top: 60px;
+    bottom: 18px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 4px 8px 30px #0000007a;
+    max-height: calc(100vh - 78px);
+
+    &.left {
+      left: 16;
+      right: calc(16px + 98px + 12px);
+      width: auto;
+      max-width: none;
+    }
+
+    &.right {
+      right: 16px;
+      left: calc(16px + 98px + 12px);
+      width: auto;
+      max-width: none;
+    }
+
+    .panel-header {
+      padding: 12px;
+      font-size: 15px;
+
+      .close-btn {
+        font-size: 20px;
+      }
+    }
+
+    .panel-body {
+      padding: 12px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .floating-panel {
+    top: 56px;
+    bottom: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    box-shadow: 3px 6px 20px #00000066;
+    max-height: calc(100vh - 70px);
+
+    &.left {
+      left: 12px !important;
+      right: calc(12px + 86px + 8px) !important;
+      width: auto !important;
+      max-width: none;
+    }
+
+    &.right {
+      right: 12px !important;
+      left: calc(12px + 86px + 8px) !important;
+      width: auto !important;
+      max-width: none;
+    }
+
+    .panel-header {
+      padding: 10px;
+      font-size: 14px;
+
+      .close-btn {
+        font-size: 18px;
+      }
+    }
+
+    .panel-body {
+      padding: 10px;
+    }
+  }
+}

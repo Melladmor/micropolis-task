@@ -1,0 +1,25 @@
+<div class="search-box-container">
+  <div class="search-box">
+    <img src="/icons/search.svg" alt="google map search icon" class="search-icon" />
+    <input
+      #searchInput
+      name="search"
+      type="text"
+      placeholder="Serach Google Maps"
+      class="search-input"
+      style="outline: none"
+    />
+    @if (isFocused() || query().length > 0) {
+    <img src="/icons/cancel.svg" alt="cancel" class="cancel-icon" (click)="onCancelSearch()" />
+    }
+  </div>
+  @if (predictions().length > 0) {
+  <ul class="search-results">
+    @for (p of predictions(); track p.place_id) {
+    <li (click)="selectPrediction(p)">
+      {{ p.description }}
+    </li>
+    }
+  </ul>
+  }
+</div>

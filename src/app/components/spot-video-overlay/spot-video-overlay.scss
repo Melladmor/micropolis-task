@@ -1,0 +1,222 @@
+@use 'variables' as *;
+
+.video-overlay {
+  position: absolute;
+  z-index: 9999;
+  transform: none !important;
+  .overlay-card {
+    position: relative;
+    background: #0b0b0b;
+    border: 3px solid $bg-gold;
+    border-radius: 10px;
+    height: 238px;
+    width: 350px;
+    overflow: hidden;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.6);
+    color: white;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .overlay-header {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    width: 95%;
+    z-index: 10;
+    .button-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .close-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
+        background: $primary-bg;
+      }
+    }
+
+    .live {
+      font-size: 12px;
+      height: 26px;
+      padding: 0px 20px;
+      line-height: 20px;
+      background: rgba($bg-white, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      align-items: center;
+      border-radius: 5px;
+
+      .indecator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $bg-pink;
+      }
+    }
+  }
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .overlay-footer {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    min-height: 26px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba($bg-white, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: $text-primary;
+    font-weight: bold;
+    text-align: center;
+    font-size: 10px;
+    padding: 0px 5px;
+    z-index: 10;
+  }
+  .pointer {
+    position: absolute;
+    z-index: 4000;
+    bottom: -8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 0px;
+    border-width: 10px;
+    border-color: $bg-gold transparent transparent transparent;
+    border-style: solid;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-overlay {
+    .overlay-card {
+      width: 300px;
+      height: 210px;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.55);
+    }
+
+    .overlay-header {
+      top: 8px;
+      left: 8px;
+      width: 94%;
+
+      .button-group {
+        gap: 6px;
+
+        .close-btn {
+          width: 22px;
+          height: 22px;
+          border-radius: 4px;
+        }
+      }
+
+      .live {
+        font-size: 11px;
+        height: 24px;
+        padding: 0px 16px;
+      }
+    }
+
+    video {
+      border-radius: 8px;
+    }
+
+    .overlay-footer {
+      bottom: 12px;
+      width: 160px;
+      font-size: 9px;
+      padding: 0px 4px;
+    }
+
+    .pointer {
+      bottom: -9%;
+      border-width: 9px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .video-overlay {
+    .overlay-card {
+      width: 260px;
+      height: 190px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .overlay-header {
+      top: 6px;
+      left: 6px;
+      width: 92%;
+
+      .button-group {
+        gap: 6px;
+
+        .close-btn {
+          width: 20px;
+          height: 20px;
+          border-radius: 4px;
+        }
+      }
+
+      .live {
+        font-size: 10px;
+        height: 22px;
+        padding: 0px 12px;
+      }
+    }
+
+    video {
+      border-radius: 6px;
+    }
+
+    .overlay-footer {
+      bottom: 10px;
+      width: 140px;
+      font-size: 9px;
+      padding: 0px 4px;
+    }
+
+    .pointer {
+      bottom: -7%;
+      border-width: 8px;
+    }
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    margin-top: 15px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}

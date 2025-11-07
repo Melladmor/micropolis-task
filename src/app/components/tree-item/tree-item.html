@@ -1,0 +1,47 @@
+<div class="tree-node">
+  <div class="node-header" (click)="toggleExpand()" (contextmenu)="openContextMenu($event, 'node')">
+    @if (level() > 0) {
+    <span class="connector"></span>
+    } @if ((node().areas?.length ?? 0) > 0 || (node().area.spots?.length ?? 0) > 0) {
+    <img
+      class="expand-icon"
+      [class.expanded]="expanded()"
+      src="/icons/buttontree.svg"
+      alt="toggle"
+    />
+    } @else {
+    <span class="expand-placeholder"></span>
+    } @if ((node().areas?.length ?? 0) > 0 || (node().area.spots?.length ?? 0) > 0) {
+    <img src="/icons/firstlevel.svg" alt="folder" class="node-icon" />
+    } @else {
+    <img src="/icons/camera.svg" alt="camera" class="node-icon" />
+    }
+
+    <span class="node-name">{{ node().area.name }}</span>
+  </div>
+
+  @if (expanded()) {
+  <div class="children-wrapper">
+    @for (spot of node().area.spots ?? []; track spot.id) {
+    <div
+      class="spot"
+      (click)="onSpotClick(spot)"
+      (contextmenu)="openContextMenu($event, spot)"
+      [class.active]="isActive(spot.id)"
+    >
+      <span class="connector"></span>
+      <img src="/icons/camera.svg" alt="spot" class="node-icon" />
+      <span>{{ spot.name }}</span>
+    </div>
+    } @for (child of node().areas ?? []; track child.area.id) {
+    <app-tree-item
+      [node]="child"
+      [level]="level() + 1"
+      [activeSpotId]="activeSpotId()"
+      (spotSelected)="spotSelected.emit($event)"
+      (newSpotRequested)="newSpotRequested.emit($event)"
+    />
+    }
+  </div>
+  }
+</div>
