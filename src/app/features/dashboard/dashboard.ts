@@ -15,6 +15,7 @@ import { AddSpotPin } from '../../components/add-spot-pin/add-spot-pin';
 import { ApiService } from '../../core/services/api.service';
 import { AreaNode, SpotDto } from '../../core/models/areas';
 import { SpotForm } from '../../components/spot-form/spot-form';
+import { PageLoader } from '../../components/page-loader/page-loader';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,7 @@ import { SpotForm } from '../../components/spot-form/spot-form';
     PinnedCameras,
     AddSpotPin,
     SpotForm,
+    PageLoader,
   ],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],

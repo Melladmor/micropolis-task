@@ -9,7 +9,6 @@ import { TokenStore } from './token-store';
 @Injectable({ providedIn: 'root' })
 export class Auth {
   private api = inject(ApiService);
-  private http = inject(HttpClient);
   private tokens = inject(TokenStore);
 
   error = signal<Error | null>(null);

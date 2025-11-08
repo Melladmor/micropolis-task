@@ -22,11 +22,11 @@
         }
       </div>
 
-      <button type="submit" [disabled]="loading">
-        @if (!loading) {
+      <button type="submit" [disabled]="loading()">
+        @if (!loading()) {
         <span>Sign In</span>
         } @else {
-        <span class="spinner"></span>
+        <app-spinner [size]="25"></app-spinner>
         }
       </button>
 

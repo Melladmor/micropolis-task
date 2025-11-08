@@ -3,10 +3,11 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../../core/services/auth';
 import { Router } from '@angular/router';
+import { Spinner } from '../../../components/spinner/spinner';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, Spinner],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -22,7 +23,9 @@ export class Login {
     password: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
   });
 
-  loading = this.auth.loading;
+  loading() {
+    return this.auth.loading;
+  }
   error = this.auth.error;
 
   onSubmit() {

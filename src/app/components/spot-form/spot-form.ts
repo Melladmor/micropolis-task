@@ -14,10 +14,11 @@ import {
 } from '../../core/models/addspotform';
 import { tap } from 'rxjs';
 import { TreeItem } from '../tree-item/tree-item';
+import { Spinner } from '../spinner/spinner';
 
 @Component({
   selector: 'app-spot-form',
-  imports: [ReactiveFormsModule, Forminput, FormMultiSelect, FormCheckbox],
+  imports: [ReactiveFormsModule, Forminput, FormMultiSelect, FormCheckbox, Spinner],
   templateUrl: './spot-form.html',
   styleUrl: './spot-form.scss',
 })

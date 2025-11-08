@@ -132,7 +132,7 @@
 
   <button type="submit" class="submit-btn">
     @if(this.api.loading()){
-    <span>Loading....</span>
+    <app-spinner [size]="25"></app-spinner>
 
     }@else {
     <span>+ Add Spot</span>
